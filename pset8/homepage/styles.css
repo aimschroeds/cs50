@@ -1,0 +1,30 @@
+.breadcrumb
+{
+    padding-top: 20px;
+    background-color: white;
+}
+
+.row
+{
+    padding-top: 30px;
+}
+
+.converter
+{
+    padding-left: 15px;
+}
+
+#result
+{
+    font-size: 14pt;
+}
+
+h3
+{
+    padding: 30px;
+}
+
+a, a:hover
+{
+    color: #2A3D6B;
+}

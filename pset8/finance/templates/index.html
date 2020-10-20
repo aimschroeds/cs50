@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Stocks
+{% endblock %}
+
+{% block main %}
+        <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+                <th>Buy</th>
+                <th>Sell</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td><b>{{ all_holdings_value }}</b></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
+        <tbody>
+                {% for row in rows %}
+                    {% if row['number'] != 0 %}
+                    <tr>
+                        <td>{{ row['symbol'] }}</td>
+                        <td>{{ row['company_name'] }}</td>
+                        <td>{{ row['number'] }}</td>
+                        <td>{{ row['current_stock_price'] }}</td>
+                        <td>{{ row['stock_value'] }}</td>
+                        <td><form action="/buy" method="post">
+                        <div class="form-group in-table">
+                            <input type="hidden" name="symbol" value="{{ row['symbol'] }}">
+                            <input autocomplete="off" autofocus class="form-control" name="number" type="text">
+                        <button class="btn btn-primary" type="submit">Buy</button>
+                        </div>
+                    </form></td>
+                        <td><form action="/sell" method="post"><div class="form-group in-table">
+                            <input type="hidden" name="symbol" value="{{ row['symbol'] }}">
+                            <input autocomplete="off" autofocus class="form-control" name="number" type="text">
+                        <button class="btn btn-primary" type="submit">Sell</button></div>
+                    </form></td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            <tr>
+                <td colspan="4">CASH</td>
+                <td>{{ cash }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
